@@ -5,38 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Angel Sierra López · Web Personal</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://kit.fontawesome.com/8b7b3dfd48.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <header>
-    <img src="https://avatars.githubusercontent.com/u/cronoss20?v=4" alt="Avatar de Angel Sierra López" class="avatar">
-    <h1>Angel Sierra López</h1>
-    <p>Desarrollador, entusiasta de la tecnología y aprendizaje continuo.</p>
-    <div class="links">
-      <a href="https://github.com/cronoss20" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/angelsierralopez/" target="_blank">LinkedIn</a>
+  <button id="darkmode-toggle" title="Alternar modo oscuro"><i class="fas fa-moon"></i></button>
+  <header class="hero">
+    <div class="hero-content">
+      <img src="https://avatars.githubusercontent.com/u/cronoss20?v=4" alt="Avatar de Angel Sierra López" class="avatar animate-in">
+      <h1 class="animate-in">¡Hola, soy Angel Sierra López!</h1>
+      <p class="animate-in">Desarrollador Full Stack, apasionado por la tecnología, la innovación y el aprendizaje continuo.</p>
+      <div class="social animate-in">
+        <a href="https://github.com/cronoss20" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/angelsierralopez/" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <!-- Agrega más redes si lo deseas -->
+      </div>
     </div>
+    <div class="hero-anim"></div>
   </header>
   <main>
-    <section>
+    <section id="about">
       <h2>Sobre mí</h2>
       <p>
-        ¡Hola! Soy Angel Sierra López, desarrollador con experiencia en diferentes tecnologías y una pasión por aprender y crecer constantemente.<br>
-        Puedes conocer más sobre mi perfil profesional en <a href="https://www.linkedin.com/in/angelsierralopez/" target="_blank">LinkedIn</a> o ver mis proyectos en <a href="https://github.com/cronoss20" target="_blank">GitHub</a>.
+        Soy ingeniero de software con experiencia en proyectos web, móviles y sistemas cloud.<br>
+        Me especializo en JavaScript, Python, Node.js y tecnologías modernas.<br>
+        Me encanta resolver problemas y trabajar en equipo.<br>
       </p>
+      <div class="skills">
+        <h3>Habilidades</h3>
+        <div class="skillbar" data-skill="JavaScript" data-percent="90"></div>
+        <div class="skillbar" data-skill="Python" data-percent="85"></div>
+        <div class="skillbar" data-skill="React" data-percent="80"></div>
+        <div class="skillbar" data-skill="Node.js" data-percent="80"></div>
+        <div class="skillbar" data-skill="SQL" data-percent="70"></div>
+        <!-- Añade más habilidades si quieres -->
+      </div>
     </section>
-    <section>
-      <h2>Proyectos destacados</h2>
-      <ul id="projects">
-        <!-- Aquí se mostrarán tus proyectos de GitHub dinámicamente -->
+    <section id="timeline">
+      <h2>Experiencia y Formación</h2>
+      <ul class="timeline">
+        <li>
+          <span class="date">2023 - Actualidad</span>
+          <span class="event">Desarrollador Full Stack en [Empresa]</span>
+        </li>
+        <li>
+          <span class="date">2021 - 2023</span>
+          <span class="event">Ingeniero de Software en [Otra Empresa]</span>
+        </li>
+        <li>
+          <span class="date">2017 - 2021</span>
+          <span class="event">Grado en Ingeniería Informática, [Universidad]</span>
+        </li>
       </ul>
     </section>
-    <section>
+    <section id="projects">
+      <h2>Proyectos destacados</h2>
+      <div class="project-list"></div>
+    </section>
+    <section id="contact">
       <h2>Contacto</h2>
       <form id="contact-form">
         <input type="text" name="name" placeholder="Nombre" required>
         <input type="email" name="email" placeholder="Correo electrónico" required>
         <textarea name="message" placeholder="Mensaje" required></textarea>
-        <button type="submit">Enviar</button>
+        <button type="submit"><i class="fas fa-paper-plane"></i> Enviar</button>
       </form>
       <div id="form-response"></div>
     </section>
