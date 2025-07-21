@@ -2,32 +2,48 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mi Portafolio - Nombre Apellido</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Angel Sierra López · Web Personal</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
-    <h1>Nombre Apellido</h1>
-    <p>Ingeniero Informático</p>
+    <img src="https://avatars.githubusercontent.com/u/cronoss20?v=4" alt="Avatar de Angel Sierra López" class="avatar">
+    <h1>Angel Sierra López</h1>
+    <p>Desarrollador, entusiasta de la tecnología y aprendizaje continuo.</p>
+    <div class="links">
+      <a href="https://github.com/cronoss20" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/angelsierralopez/" target="_blank">LinkedIn</a>
+    </div>
   </header>
-  <section>
-    <h2>Sobre mí</h2>
-    <p>Breve descripción sobre ti y tu experiencia.</p>
-  </section>
-  <section>
-    <h2>Proyectos Destacados</h2>
-    <ul>
-      <li><a href="https://github.com/usuario/proyecto1">Proyecto 1</a> - Descripción breve.</li>
-      <li><a href="https://github.com/usuario/proyecto2">Proyecto 2</a> - Descripción breve.</li>
-    </ul>
-  </section>
-  <section>
-    <h2>Contacto</h2>
-    <p>Email: tuemail@ejemplo.com</p>
-    <p>
-      <a href="https://www.linkedin.com/in/tuusuario">LinkedIn</a> | 
-      <a href="https://github.com/tuusuario">GitHub</a>
-    </p>
-  </section>
+  <main>
+    <section>
+      <h2>Sobre mí</h2>
+      <p>
+        ¡Hola! Soy Angel Sierra López, desarrollador con experiencia en diferentes tecnologías y una pasión por aprender y crecer constantemente.<br>
+        Puedes conocer más sobre mi perfil profesional en <a href="https://www.linkedin.com/in/angelsierralopez/" target="_blank">LinkedIn</a> o ver mis proyectos en <a href="https://github.com/cronoss20" target="_blank">GitHub</a>.
+      </p>
+    </section>
+    <section>
+      <h2>Proyectos destacados</h2>
+      <ul id="projects">
+        <!-- Aquí se mostrarán tus proyectos de GitHub dinámicamente -->
+      </ul>
+    </section>
+    <section>
+      <h2>Contacto</h2>
+      <form id="contact-form">
+        <input type="text" name="name" placeholder="Nombre" required>
+        <input type="email" name="email" placeholder="Correo electrónico" required>
+        <textarea name="message" placeholder="Mensaje" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+      <div id="form-response"></div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Angel Sierra López · Web Personal</p>
+  </footer>
+  <script src="main.js"></script>
 </body>
 </html>
