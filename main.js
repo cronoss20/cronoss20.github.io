@@ -43,7 +43,10 @@ fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated`)
 const contactForm = document.getElementById("contact-form");
 contactForm.addEventListener("submit", function(e) {
   e.preventDefault();
-  document.getElementById("form-response").textContent = "¡Gracias por tu mensaje! Me pondré en contacto pronto.";
+  const es = document.querySelector('.lang-es').style.display !== 'none';
+  document.getElementById("form-response").textContent = es
+    ? "¡Gracias por tu mensaje! Me pondré en contacto pronto."
+    : "Thank you for your message! I will get in touch soon.";
   contactForm.reset();
 });
 
@@ -57,3 +60,17 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     }
   });
 });
+
+// Cambiar idioma entre español e inglés
+document.getElementById('btn-es').onclick = function() {
+  document.querySelectorAll('.lang-es').forEach(e => e.style.display = '');
+  document.querySelectorAll('.lang-en').forEach(e => e.style.display = 'none');
+  document.getElementById('btn-es').classList.add('active');
+  document.getElementById('btn-en').classList.remove('active');
+};
+document.getElementById('btn-en').onclick = function() {
+  document.querySelectorAll('.lang-es').forEach(e => e.style.display = 'none');
+  document.querySelectorAll('.lang-en').forEach(e => e.style.display = '');
+  document.getElementById('btn-en').classList.add('active');
+  document.getElementById('btn-es').classList.remove('active');
+};
