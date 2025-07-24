@@ -8,74 +8,138 @@
   <script src="https://kit.fontawesome.com/8b7b3dfd48.js" crossorigin="anonymous"></script>
 </head>
 <body>
+  <div class="lang-switch">
+    <button id="btn-es" class="lang-btn active">ES</button>
+    <button id="btn-en" class="lang-btn">EN</button>
+  </div>
   <button id="darkmode-toggle" title="Alternar modo oscuro"><i class="fas fa-moon"></i></button>
   <header class="hero">
     <div class="hero-content">
-      <img src="https://avatars.githubusercontent.com/u/14996647?s=400&v=4" alt="Avatar de Angel Sierra López" class="avatar animate-in">
-      <h1 class="animate-in">¡Hola, 👋 Soy Angel Sierra López!</h1>
-      <p class="animate-in">Desarrollador Full Stack apasionado por la tecnología 💻, la innovación 🚀 y el aprendizaje continuo 📚.
-Tengo experiencia desarrollando aplicaciones web y móviles 🌐📱, así como implementando soluciones cloud escalables ☁️. Mi stack principal incluye JavaScript, Python, Node.js y frameworks modernos como React ⚛️.
-Me considero una persona curiosa y proactiva 🧐, siempre en busca de nuevos retos que me permitan crecer tanto profesional como personalmente. Me encanta resolver problemas 🧩, colaborar en equipo 🤝 y convertir ideas en productos funcionales que aporten valor real 💡.</p>
+      <img src="https://avatars.githubusercontent.com/u/6085837?v=4" alt="Avatar de Angel Sierra López" class="avatar animate-in">
+      <section class="hero-card">
+        <div class="lang-es">
+          <h1>¡Hola, soy Angel Sierra López!</h1>
+          <p>
+            👋 Soy desarrollador Full Stack apasionado por la tecnología 💻, la innovación 🚀 y el aprendizaje continuo 📚.<br>
+            Tengo experiencia desarrollando aplicaciones web y móviles 🌐📱, así como implementando soluciones cloud escalables ☁️.<br>
+            Mi stack principal incluye JavaScript, Python, Node.js y frameworks modernos como React ⚛️.<br>
+            Me considero una persona curiosa y proactiva 🧐, siempre en busca de nuevos retos que me permitan crecer tanto profesional como personalmente.<br>
+            Me encanta resolver problemas 🧩, colaborar en equipo 🤝 y convertir ideas en productos funcionales que aporten valor real 💡.
+          </p>
+        </div>
+        <div class="lang-en" style="display:none">
+          <h1>Hi, I'm Angel Sierra López!</h1>
+          <p>
+            👋 I’m a Full Stack Developer passionate about technology 💻, innovation 🚀, and continuous learning 📚.<br>
+            I have experience developing web and mobile applications 🌐📱, as well as implementing scalable cloud solutions ☁️.<br>
+            My main stack includes JavaScript, Python, Node.js, and modern frameworks like React ⚛️.<br>
+            I consider myself a curious and proactive person 🧐, always looking for new challenges that allow me to grow both professionally and personally.<br>
+            I love solving problems 🧩, collaborating in teams 🤝, and turning ideas into functional products that provide real value 💡.
+          </p>
+        </div>
+      </section>
       <div class="social animate-in">
         <a href="https://github.com/cronoss20" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
         <a href="https://www.linkedin.com/in/angelsierralopez/" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <!-- Agrega más redes si lo deseas -->
       </div>
     </div>
     <div class="hero-anim"></div>
   </header>
   <main>
     <section id="about">
-      <h2>Sobre mí</h2>
-      <p>
-        Soy ingeniero de software con experiencia en proyectos web, móviles y sistemas cloud.<br>
-        Me especializo en JavaScript, Python, Node.js y tecnologías modernas.<br>
-        Me encanta resolver problemas y trabajar en equipo.<br>
-      </p>
-      <div class="skills">
-        <h3>Habilidades</h3>
-        <div class="skillbar" data-skill="JavaScript" data-percent="90"></div>
-        <div class="skillbar" data-skill="Python" data-percent="85"></div>
-        <div class="skillbar" data-skill="React" data-percent="80"></div>
-        <div class="skillbar" data-skill="Node.js" data-percent="80"></div>
-        <div class="skillbar" data-skill="SQL" data-percent="70"></div>
-        <!-- Añade más habilidades si quieres -->
+      <div class="about-card">
+        <div class="lang-es">
+          <h2>Sobre mí</h2>
+          <p>
+            Soy ingeniero de software con experiencia en proyectos web, móviles y sistemas cloud.<br>
+            Me especializo en JavaScript, Python, Node.js y tecnologías modernas.<br>
+            Me encanta resolver problemas y trabajar en equipo.
+          </p>
+          <h3>Habilidades</h3>
+          <div class="skillbar" data-skill="JavaScript" data-percent="90"></div>
+          <div class="skillbar" data-skill="Python" data-percent="85"></div>
+          <div class="skillbar" data-skill="React" data-percent="80"></div>
+          <div class="skillbar" data-skill="Node.js" data-percent="80"></div>
+          <div class="skillbar" data-skill="SQL" data-percent="70"></div>
+        </div>
+        <div class="lang-en" style="display:none">
+          <h2>About Me</h2>
+          <p>
+            I am a software engineer with experience in web, mobile, and cloud systems projects.<br>
+            I specialize in JavaScript, Python, Node.js, and modern technologies.<br>
+            I love solving problems and working in teams.
+          </p>
+          <h3>Skills</h3>
+          <div class="skillbar" data-skill="JavaScript" data-percent="90"></div>
+          <div class="skillbar" data-skill="Python" data-percent="85"></div>
+          <div class="skillbar" data-skill="React" data-percent="80"></div>
+          <div class="skillbar" data-skill="Node.js" data-percent="80"></div>
+          <div class="skillbar" data-skill="SQL" data-percent="70"></div>
+        </div>
       </div>
     </section>
     <section id="timeline">
-      <h2>Experiencia y Formación</h2>
-      <ul class="timeline">
-        <li>
-          <span class="date">2023 - Actualidad</span>
-          <span class="event">Desarrollador Full Stack en [Empresa]</span>
-        </li>
-        <li>
-          <span class="date">2021 - 2023</span>
-          <span class="event">Ingeniero de Software en [Otra Empresa]</span>
-        </li>
-        <li>
-          <span class="date">2017 - 2021</span>
-          <span class="event">Grado en Ingeniería Informática, [Universidad]</span>
-        </li>
-      </ul>
+      <div class="timeline-card">
+        <div class="lang-es">
+          <h2>Experiencia y Formación</h2>
+          <ul class="timeline">
+            <li>
+              <span class="date">2023 - Actualidad</span>
+              <span class="event">Desarrollador Full Stack en [Empresa]</span>
+            </li>
+            <li>
+              <span class="date">2021 - 2023</span>
+              <span class="event">Ingeniero de Software en [Otra Empresa]</span>
+            </li>
+            <li>
+              <span class="date">2017 - 2021</span>
+              <span class="event">Grado en Ingeniería Informática, [Universidad]</span>
+            </li>
+          </ul>
+        </div>
+        <div class="lang-en" style="display:none">
+          <h2>Experience & Education</h2>
+          <ul class="timeline">
+            <li>
+              <span class="date">2023 - Present</span>
+              <span class="event">Full Stack Developer at [Company]</span>
+            </li>
+            <li>
+              <span class="date">2021 - 2023</span>
+              <span class="event">Software Engineer at [Other Company]</span>
+            </li>
+            <li>
+              <span class="date">2017 - 2021</span>
+              <span class="event">BSc in Computer Engineering, [University]</span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </section>
     <section id="projects">
-      <h2>Proyectos destacados</h2>
+      <h2 class="lang-es">Proyectos destacados</h2>
+      <h2 class="lang-en" style="display:none">Featured Projects</h2>
       <div class="project-list"></div>
     </section>
     <section id="contact">
-      <h2>Contacto</h2>
+      <h2 class="lang-es">Contacto</h2>
+      <h2 class="lang-en" style="display:none">Contact</h2>
       <form id="contact-form">
-        <input type="text" name="name" placeholder="Nombre" required>
-        <input type="email" name="email" placeholder="Correo electrónico" required>
-        <textarea name="message" placeholder="Mensaje" required></textarea>
-        <button type="submit"><i class="fas fa-paper-plane"></i> Enviar</button>
+        <input type="text" name="name" class="lang-es" placeholder="Nombre" required>
+        <input type="text" name="name" class="lang-en" placeholder="Name" required style="display:none">
+        <input type="email" name="email" class="lang-es" placeholder="Correo electrónico" required>
+        <input type="email" name="email" class="lang-en" placeholder="Email" required style="display:none">
+        <textarea name="message" class="lang-es" placeholder="Mensaje" required></textarea>
+        <textarea name="message" class="lang-en" placeholder="Message" required style="display:none"></textarea>
+        <button type="submit" class="lang-es"><i class="fas fa-paper-plane"></i> Enviar</button>
+        <button type="submit" class="lang-en" style="display:none"><i class="fas fa-paper-plane"></i> Send</button>
       </form>
       <div id="form-response"></div>
     </section>
   </main>
   <footer>
-    <p>&copy; 2025 Angel Sierra López · Web Personal</p>
+    <p class="lang-es">&copy; 2025 Angel Sierra López · Web Personal</p>
+    <p class="lang-en" style="display:none">&copy; 2025 Angel Sierra López · Personal Website</p>
   </footer>
   <script src="main.js"></script>
 </body>
