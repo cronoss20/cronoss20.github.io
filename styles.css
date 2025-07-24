@@ -45,14 +45,22 @@ body {
   border-radius: 20px;
   padding: 0.4rem 1.1rem;
   margin-left: 0.3rem;
-  font-size: 1rem;
+  font-size: 1.3rem;
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
 }
+
+/* Idioma seleccionado: más visible */
 .lang-btn.active,
 .lang-btn:hover {
   background: #21a1f3;
   color: #fff;
+}
+
+/* Idioma no seleccionado: color igual al fondo */
+.lang-btn:not(.active) {
+  background: var(--background);
+  color: var(--background);
 }
 
 header.hero {
