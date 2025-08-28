@@ -74,3 +74,24 @@ document.getElementById('btn-en').onclick = function() {
   document.getElementById('btn-en').classList.add('active');
   document.getElementById('btn-es').classList.remove('active');
 };
+
+// Tu usuario de GitHub
+const githubUser = "cronoss20";
+
+async function fetchGitHubName(username) {
+  const res = await fetch(`https://api.github.com/users/${username}`);
+  if (!res.ok) return username; // Si no hay nombre, usa el username
+  const data = await res.json();
+  return data.name || username;
+}
+
+function setName(name) {
+  document.getElementById("logo-name").textContent = name;
+  document.getElementById("hero-title").textContent = `Hola, soy ${name}`;
+  document.getElementById("page-title").textContent = `${name} | Ingeniero Informático`;
+  const year = new Date().getFullYear();
+  document.getElementById("footer-copy").textContent = `© ${year} ${name}. Todos los derechos reservados.`;
+}
+
+// Inicializa: busca el nombre y lo pone en la web
+fetchGitHubName(githubUser).then(setName);
