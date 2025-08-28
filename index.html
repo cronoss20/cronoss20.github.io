@@ -1,146 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Angel Sierra López · Web Personal</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://kit.fontawesome.com/8b7b3dfd48.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cronoss20 | Ingeniero Informático</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="lang-switch">
-    <button id="btn-es" class="lang-btn active" title="Español">🇪🇸</button>
-    <button id="btn-en" class="lang-btn" title="English">🇬🇧</button>
-  </div>
-  <button id="darkmode-toggle" title="Alternar modo oscuro"><i class="fas fa-moon"></i></button>
-  <header class="hero">
-    <div class="hero-flex">
-      <img src="https://avatars.githubusercontent.com/u/14996647?s=400&v=4" alt="Avatar de Angel Sierra López" class="avatar animate-in">
-      <section class="hero-card">
-        <div class="lang-es">
-          <h1>¡Hola, soy Angel Sierra López!</h1>
-          <p>
-            👋 Soy desarrollador Full Stack apasionado por la tecnología 💻, la innovación 🚀 y el aprendizaje continuo 📚.<br>
-            Tengo experiencia desarrollando aplicaciones web y móviles 🌐📱, así como implementando soluciones cloud escalables ☁️.<br>
-            Mi stack principal incluye JavaScript, Python, Node.js y frameworks modernos como React ⚛️.<br>
-            Me considero una persona curiosa y proactiva 🧐, siempre en busca de nuevos retos que me permitan crecer tanto profesional como personalmente.<br>
-            Me encanta resolver problemas 🧩, colaborar en equipo 🤝 y convertir ideas en productos funcionales que aporten valor real 💡.
-          </p>
-        </div>
-        <div class="lang-en" style="display:none">
-          <h1>Hi, I'm Angel Sierra López!</h1>
-          <p>
-            👋 I’m a Full Stack Developer passionate about technology 💻, innovation 🚀, and continuous learning 📚.<br>
-            I have experience developing web and mobile applications 🌐📱, as well as implementing scalable cloud solutions ☁️.<br>
-            My main stack includes JavaScript, Python, Node.js, and modern frameworks like React ⚛️.<br>
-            I consider myself a curious and proactive person 🧐, always looking for new challenges that allow me to grow both professionally and personally.<br>
-            I love solving problems 🧩, collaborating in teams 🤝, and turning ideas into functional products that provide real value 💡.
-          </p>
-        </div>
-      </section>
-      <div class="social animate-in">
-        <a href="https://github.com/cronoss20" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/angelsierralopez/" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+  <header>
+    <div class="logo">Cronoss20</div>
+    <nav>
+      <a href="#about">Sobre mí</a>
+      <a href="#projects">Proyectos</a>
+      <a href="#contact">Contacto</a>
+      <div class="flags">
+        <!-- Bandera España -->
+        <a href="#" class="flag" title="Español">
+          <img src="es.svg" alt="Español"/>
+        </a>
+        <!-- Bandera Inglaterra -->
+        <a href="#" class="flag" title="English">
+          <img src="en.svg" alt="English"/>
+        </a>
+        <!-- Bandera Francia -->
+        <a href="#" class="flag" title="Français">
+          <img src="fr.svg" alt="Français"/>
+        </a>
+      </div>
+    </nav>
+  </header>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Hola, soy Cronoss20</h1>
+      <h2>Ingeniero Informático</h2>
+      <p>Desarrollo soluciones modernas y flexibles para la web.</p>
+      <a href="#projects" class="cta-btn">Ver proyectos</a>
+    </div>
+    <div class="hero-img">
+      <img src="profile.jpg" alt="Foto perfil Cronoss20"/>
+    </div>
+  </section>
+  <section id="about">
+    <h2>Sobre mí</h2>
+    <div class="about-content">
+      <p>Apasionado por la tecnología y la innovación. Experto en desarrollo web, automatización y soluciones cloud.</p>
+      <div class="skills">
+        <span><img src="react.svg" alt="React" title="React"/></span>
+        <span><img src="python.svg" alt="Python" title="Python"/></span>
+        <span><img src="docker.svg" alt="Docker" title="Docker"/></span>
+        <!-- Añade más skills aquí -->
       </div>
     </div>
-    <div class="hero-anim"></div>
-  </header>
-  <main>
-    <section id="about">
-      <div class="about-card">
-        <div class="lang-es">
-          <h2>Sobre mí</h2>
-          <p>
-            Soy ingeniero de software con experiencia en proyectos web, móviles y sistemas cloud.<br>
-            Me especializo en JavaScript, Python, Node.js y tecnologías modernas.<br>
-            Me encanta resolver problemas y trabajar en equipo.
-          </p>
-          <h3>Habilidades</h3>
-          <div class="skillbar" data-skill="JavaScript" data-percent="90"></div>
-          <div class="skillbar" data-skill="Python" data-percent="85"></div>
-          <div class="skillbar" data-skill="React" data-percent="80"></div>
-          <div class="skillbar" data-skill="Node.js" data-percent="80"></div>
-          <div class="skillbar" data-skill="SQL" data-percent="70"></div>
-        </div>
-        <div class="lang-en" style="display:none">
-          <h2>About Me</h2>
-          <p>
-            I am a software engineer with experience in web, mobile, and cloud systems projects.<br>
-            I specialize in JavaScript, Python, Node.js, and modern technologies.<br>
-            I love solving problems and working in teams.
-          </p>
-          <h3>Skills</h3>
-          <div class="skillbar" data-skill="JavaScript" data-percent="90"></div>
-          <div class="skillbar" data-skill="Python" data-percent="85"></div>
-          <div class="skillbar" data-skill="React" data-percent="80"></div>
-          <div class="skillbar" data-skill="Node.js" data-percent="80"></div>
-          <div class="skillbar" data-skill="SQL" data-percent="70"></div>
-        </div>
+  </section>
+  <section id="projects">
+    <h2>Proyectos Destacados</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="project1.jpg" alt="Proyecto 1"/>
+        <h3>Proyecto 1</h3>
+        <p>Descripción breve del proyecto 1.</p>
+        <a href="#" target="_blank">GitHub</a>
       </div>
-    </section>
-    <section id="timeline">
-      <div class="timeline-card">
-        <div class="lang-es">
-          <h2>Experiencia y Formación</h2>
-          <ul class="timeline">
-            <li>
-              <span class="date">2023 - Actualidad</span>
-              <span class="event">Desarrollador Full Stack en [Empresa]</span>
-            </li>
-            <li>
-              <span class="date">2021 - 2023</span>
-              <span class="event">Ingeniero de Software en [Otra Empresa]</span>
-            </li>
-            <li>
-              <span class="date">2017 - 2021</span>
-              <span class="event">Grado en Ingeniería Informática, [Universidad]</span>
-            </li>
-          </ul>
-        </div>
-        <div class="lang-en" style="display:none">
-          <h2>Experience & Education</h2>
-          <ul class="timeline">
-            <li>
-              <span class="date">2023 - Present</span>
-              <span class="event">Full Stack Developer at [Company]</span>
-            </li>
-            <li>
-              <span class="date">2021 - 2023</span>
-              <span class="event">Software Engineer at [Other Company]</span>
-            </li>
-            <li>
-              <span class="date">2017 - 2021</span>
-              <span class="event">BSc in Computer Engineering, [University]</span>
-            </li>
-          </ul>
-        </div>
+      <div class="project-card">
+        <img src="project2.jpg" alt="Proyecto 2"/>
+        <h3>Proyecto 2</h3>
+        <p>Descripción breve del proyecto 2.</p>
+        <a href="#" target="_blank">Demo</a>
       </div>
-    </section>
-    <section id="projects">
-      <h2 class="lang-es">Proyectos destacados</h2>
-      <h2 class="lang-en" style="display:none">Featured Projects</h2>
-      <div class="project-list"></div>
-    </section>
-    <section id="contact">
-      <h2 class="lang-es">Contacto</h2>
-      <h2 class="lang-en" style="display:none">Contact</h2>
-      <form id="contact-form">
-        <input type="text" name="name" class="lang-es" placeholder="Nombre" required>
-        <input type="text" name="name" class="lang-en" placeholder="Name" required style="display:none">
-        <input type="email" name="email" class="lang-es" placeholder="Correo electrónico" required>
-        <input type="email" name="email" class="lang-en" placeholder="Email" required style="display:none">
-        <textarea name="message" class="lang-es" placeholder="Mensaje" required></textarea>
-        <textarea name="message" class="lang-en" placeholder="Message" required style="display:none"></textarea>
-        <button type="submit" class="lang-es"><i class="fas fa-paper-plane"></i> Enviar</button>
-        <button type="submit" class="lang-en" style="display:none"><i class="fas fa-paper-plane"></i> Send</button>
-      </form>
-      <div id="form-response"></div>
-    </section>
-  </main>
+      <!-- Más proyectos -->
+    </div>
+  </section>
+  <section id="contact">
+    <h2>Contacto</h2>
+    <form>
+      <input type="text" name="name" placeholder="Nombre" required/>
+      <input type="email" name="email" placeholder="Email" required/>
+      <textarea name="message" placeholder="Mensaje" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <div class="contact-icons">
+      <a href="#" title="GitHub"><img src="github.svg" alt="GitHub"/></a>
+      <a href="#" title="LinkedIn"><img src="linkedin.svg" alt="LinkedIn"/></a>
+      <!-- Más redes -->
+    </div>
+  </section>
   <footer>
-    <p class="lang-es">&copy; 2025 Angel Sierra López · Web Personal</p>
-    <p class="lang-en" style="display:none">&copy; 2025 Angel Sierra López · Personal Website</p>
+    <span>© 2025 Cronoss20. Todos los derechos reservados.</span>
   </footer>
-  <script src="main.js"></script>
 </body>
 </html>
