@@ -233,11 +233,11 @@ section {
 /* Contact layout: grid with form left and info right */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 360px;
+  grid-template-columns: 1fr 1fr; /* dos columnas iguales 50/50 */
   gap: 1.6rem;
   align-items: start;
 }
-.contact-left {}
+
 .contact-right {
   border-left: 1px solid #f0f0f0;
   padding-left: 1.4rem;
@@ -251,6 +251,21 @@ section {
   .contact-grid { grid-template-columns: 1fr; }
   .contact-right { border-left: none; padding-left: 0; margin-top: 1rem; }
   .contact-quick { flex-direction: row; }
+  /* Centrar el formulario en versiones móviles */
+  form {
+    /* Hacer que el formulario ocupe todo el ancho del viewport en móvil, respetando 16px de margen a cada lado */
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: calc(100vw - 32px);
+    max-width: none;
+    padding-left: 1rem; /* mantener padding interior agradable */
+    padding-right: 1rem;
+  }
+  /* Asegurar que ambos bloques ocupan el 100% cuando colapsan a una sola columna */
+  .contact-left, .contact-right {
+    width: 100%;
+    max-width: none;
+  }
 }
 
 h2 {
@@ -305,6 +320,16 @@ h2 {
   grid-template-columns: 1fr;
   gap: 1.25rem;
 }
+
+.projects-loader, .projects-empty, .projects-fail {
+  padding: 1.2rem;
+  border: var(--border);
+  border-radius: 10px;
+  background: #fafafa;
+  color: #333;
+  text-align: center;
+}
+.projects-fail .projects-fail-details { color: #8b1e1e; font-size: .95rem; margin-top: .6rem; }
 .project-card {
   background: var(--card-bg);
   border-radius: 12px;
@@ -344,7 +369,7 @@ form {
   flex-direction: column;
   gap: 1rem;
   max-width: 400px;
-  margin: auto;
+  margin: 0; /* quitar centrado; alineado a la izquierda de su contenedor */
   background: #fff;
   border-radius: 14px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.03);
@@ -360,6 +385,16 @@ form input, form textarea {
   font-size: 1rem;
   outline: none;
   transition: background var(--transition), border var(--transition);
+  width: 100%;           /* asegurar que todos los campos ocupen el ancho del formulario */
+  box-sizing: border-box; /* incluir padding/border en el ancho */
+}
+
+/* Limitar redimensionamiento: solo vertical; evitar expansión horizontal */
+form textarea {
+  resize: vertical;      /* permite solo cambiar altura */
+  max-width: 100%;       /* nunca más ancho que su contenedor */
+  min-height: 120px;     /* altura inicial razonable */
+  overflow: auto;
 }
 form input:focus, form textarea:focus { background: #fff; border: 1.5px solid var(--accent-2); }
 form button {
@@ -458,7 +493,7 @@ footer {
 
 @media (max-width: 700px) {
   nav { gap: 0.6rem; flex-wrap: wrap; padding: 0.4rem 0; }
-  .flags { margin-left: 0; margin-top: 6px; width: 100%; justify-content: flex-end; }
+  .contact-right { border-left: none; padding-left: 0; margin-top: 1rem; }
   .flag { width: 30px; height: 30px; }
   .flag img { width: 20px; height: 20px; }
   header { padding: 0 .8rem; }

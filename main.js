@@ -158,14 +158,45 @@ document.addEventListener('DOMContentLoaded', () => {
   if (projectsContainer) {
     // limpiar contenido estático para evitar duplicados
     projectsContainer.innerHTML = '';
+    // loader
+    const loader = document.createElement('div');
+    loader.className = 'projects-loader';
+    loader.textContent = 'Cargando proyectos...';
+    projectsContainer.appendChild(loader);
+
     fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=12`)
-      .then(res => res.ok ? res.json() : [])
+      .then(async res => {
+        if (!res.ok) {
+          const text = await res.text().catch(() => '');
+          const msg = `Error al obtener repositorios: ${res.status} ${res.statusText}`;
+          console.error(msg, text);
+          // Intentar fallback local si existe projects.json (útil cuando la API rate-limit)
+          if (res.status === 403 || res.status === 429) {
+            console.warn('GitHub API rate limit detectado, intentando cargar fallback local projects.json');
+            try {
+              const localRes = await fetch('projects.json');
+              if (localRes.ok) return localRes.json();
+            } catch (e) { /* seguir lanzando el error original */ }
+          }
+          throw new Error(msg);
+        }
+        return res.json();
+      })
       .then(repos => {
+        projectsContainer.innerHTML = '';
         const tr = translations[currentLang] || translations.es;
         // excluir el repositorio de la página personal
-        const filtered = (repos || []).filter(r => r && r.name !== 'cronoss20.github.io');
+        const filtered = (repos || []).filter(r => r && r.name !== `${githubUsername}.github.io`);
         // tomar hasta 6 repos recientes después de filtrar
-        filtered.slice(0,6).forEach(repo => {
+        const toShow = filtered.slice(0,6);
+        if (!toShow.length) {
+          const empty = document.createElement('div');
+          empty.className = 'projects-empty';
+          empty.textContent = 'No hay proyectos públicos para mostrar.';
+          projectsContainer.appendChild(empty);
+          return;
+        }
+        toShow.forEach(repo => {
           const card = document.createElement('div');
           card.className = 'project-card';
           card.innerHTML = `
@@ -181,7 +212,18 @@ document.addEventListener('DOMContentLoaded', () => {
           `;
           projectsContainer.appendChild(card);
         });
-      }).catch(() => {/* ignore fetch errors */});
+      })
+      .catch(err => {
+        console.error('Error cargando proyectos GitHub:', err);
+        projectsContainer.innerHTML = '';
+        const fail = document.createElement('div');
+        fail.className = 'projects-fail';
+        fail.innerHTML = `
+          <p>No se han podido cargar los proyectos desde GitHub.</p>
+          <p class="projects-fail-details">${err && err.message ? err.message : 'Error desconocido'}</p>
+        `;
+        projectsContainer.appendChild(fail);
+      });
   }
 
   // ---- Formulario de contacto (si existe) ----
