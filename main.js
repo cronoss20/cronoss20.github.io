@@ -2,6 +2,140 @@
 // Código seguro: comprueba la existencia de elementos antes de operar
 
 document.addEventListener('DOMContentLoaded', () => {
+  // ---- Traducciones y selección de idioma ----
+  const translations = {
+    es: {
+      hero_h1_prefix: 'Hola, soy',
+      hero_h2: 'Ingeniero Informático',
+      hero_p: 'Desarrollo soluciones modernas y flexibles para la web.',
+      cta: 'Ver proyectos',
+      about_h2: 'Sobre mí',
+      about_p: 'Soy {name}, Ingeniero Informático apasionado por resolver problemas reales mediante software bien diseñado. Desarrollo aplicaciones web y APIs con PHP, Node y Python, construyo interfaces reactivas con HTML/CSS y React, y uso Docker para crear despliegues reproducibles. También trabajo con C/C++ cuando se requiere rendimiento; disfruto automatizar flujos y facilitar productos escalables y mantenibles.',
+      projects_h2: 'Proyectos Destacados',
+      project_code: 'Código',
+      project_demo: 'Demo',
+      contact_h2: 'Contacto',
+      form_name: 'Nombre',
+      form_email: 'Email',
+      form_msg: 'Mensaje',
+      form_btn: 'Enviar',
+      footer_tpl: '© {year} {name}. Todos los derechos reservados.',
+      sidebar_nav_about: 'Sobre mí',
+      sidebar_nav_projects: 'Proyectos',
+      sidebar_nav_contact: 'Contacto',
+      sidebar_motivation: 'Me muevo por la curiosidad y el deseo de resolver problemas reales; disfruto aprendiendo nuevas tecnologías y construyendo soluciones prácticas que ayuden a otros.'
+    },
+    en: {
+      hero_h1_prefix: 'Hi, I am',
+      hero_h2: 'Software Engineer',
+      hero_p: 'I build modern, flexible web solutions.',
+      cta: 'See projects',
+      about_h2: 'About me',
+      about_p: 'I am {name}, a software engineer driven by curiosity and real-world problems. I develop web applications and APIs with PHP, Node and Python, build reactive interfaces using HTML/CSS and React, and use Docker for reproducible deployments. I also work with C/C++ when performance or low-level control is required; I enjoy automating workflows and delivering scalable, maintainable products.',
+      projects_h2: 'Featured Projects',
+      project_code: 'Code',
+      project_demo: 'Demo',
+      contact_h2: 'Contact',
+      form_name: 'Name',
+      form_email: 'Email',
+      form_msg: 'Message',
+      form_btn: 'Send',
+      footer_tpl: '© {year} {name}. All rights reserved.',
+      sidebar_nav_about: 'About',
+      sidebar_nav_projects: 'Projects',
+      sidebar_nav_contact: 'Contact',
+      sidebar_motivation: 'I am driven by curiosity and the desire to solve real problems; I enjoy learning new technologies and building practical solutions that help others.'
+    },
+    fr: {
+      hero_h1_prefix: 'Bonjour, je suis',
+      hero_h2: "Ingénieur informaticien",
+      hero_p: 'Je développe des solutions web modernes et flexibles.',
+      cta: 'Voir les projets',
+      about_h2: 'À propos de moi',
+      about_p: 'Je suis {name}, ingénieur informatique animé par la curiosité et le désir de résoudre des problèmes concrets. Je développe des applications web et des API avec PHP, Node et Python, crée des interfaces réactives avec HTML/CSS et React, et utilise Docker pour des déploiements reproductibles. Je travaille également en C/C++ lorsque la performance est requise; j\'aime automatiser les flux et livrer des produits évolutifs et maintenables.',
+      projects_h2: 'Projets en vedette',
+      project_code: 'Code',
+      project_demo: 'Demo',
+      contact_h2: 'Contact',
+      form_name: 'Nom',
+      form_email: 'Email',
+      form_msg: 'Message',
+      form_btn: 'Envoyer',
+      footer_tpl: '© {year} {name}. Tous droits réservés.',
+      sidebar_nav_about: 'À propos',
+      sidebar_nav_projects: 'Projets',
+      sidebar_nav_contact: 'Contact',
+      sidebar_motivation: 'Je suis motivé par la curiosité et le désir de résoudre des problèmes concrets; j\'aime apprendre de nouvelles technologies et construire des solutions pratiques qui aident les autres.'
+    }
+  };
+
+  let currentLang = localStorage.getItem('site_lang') || (navigator.language || 'es').slice(0,2);
+  if (!translations[currentLang]) currentLang = 'es';
+  let currentName = 'Cronoss20';
+
+  function markActiveFlag(lang) {
+    document.querySelectorAll('.flag').forEach(a => {
+      const t = (a.title || '').toLowerCase();
+      const map = { 'español':'es', 'english':'en', 'français':'fr' };
+      const code = map[t] || (a.dataset.lang || '').toLowerCase();
+      if (code === lang) a.classList.add('active'); else a.classList.remove('active');
+    });
+  }
+
+  function applyTranslations(lang) {
+    const tr = translations[lang] || translations.es;
+    // Hero
+    const h1 = document.querySelector('.hero-content h1'); if (h1) h1.textContent = `${tr.hero_h1_prefix} ${currentName}`;
+    const h2 = document.querySelector('.hero-content h2'); if (h2) h2.textContent = tr.hero_h2;
+    const p = document.querySelector('.hero-content p'); if (p) p.textContent = tr.hero_p;
+    const cta = document.querySelector('.cta-btn'); if (cta) cta.textContent = tr.cta;
+    // About
+    const aboutH2 = document.querySelector('#about h2'); if (aboutH2) aboutH2.textContent = tr.about_h2;
+  const aboutP = document.querySelector('#about .about-content p'); if (aboutP) aboutP.textContent = tr.about_p.replace('{name}', currentName);
+    // Projects
+    const projectsH2 = document.querySelector('#projects h2'); if (projectsH2) projectsH2.textContent = tr.projects_h2;
+    // Contact / Form
+    const contactH2 = document.querySelector('#contact h2'); if (contactH2) contactH2.textContent = tr.contact_h2;
+    const nameInput = document.querySelector('input[name="name"]'); if (nameInput) nameInput.placeholder = tr.form_name;
+    const emailInput = document.querySelector('input[name="email"]'); if (emailInput) emailInput.placeholder = tr.form_email;
+    const msgInput = document.querySelector('textarea[name="message"]'); if (msgInput) msgInput.placeholder = tr.form_msg;
+    const submitBtn = document.querySelector('#contact form button[type="submit"]'); if (submitBtn) submitBtn.textContent = tr.form_btn;
+    // Sidebar
+    const sb = document.querySelector('.sidebar'); if (sb) {
+      const navs = sb.querySelectorAll('.sidebar-nav a');
+      if (navs[0]) navs[0].querySelectorAll('span')[1].textContent = tr.sidebar_nav_about;
+      if (navs[1]) navs[1].querySelectorAll('span')[1].textContent = tr.sidebar_nav_projects;
+      if (navs[2]) navs[2].querySelectorAll('span')[1].textContent = tr.sidebar_nav_contact;
+      const sm = sb.querySelector('.sidebar-motivation p'); if (sm) sm.textContent = tr.sidebar_motivation;
+    }
+    // Footer
+    const footerCopy = document.querySelector('footer span'); if (footerCopy) footerCopy.textContent = tr.footer_tpl.replace('{year}', new Date().getFullYear()).replace('{name}', currentName);
+    // Projects cards links text (if generated dynamically, the fetch will also use current translations)
+  }
+
+  function setLanguage(lang) {
+    if (!translations[lang]) lang = 'es';
+    currentLang = lang;
+    localStorage.setItem('site_lang', lang);
+    document.documentElement.lang = lang;
+    markActiveFlag(lang);
+    applyTranslations(lang);
+  }
+
+  // Wire flags
+  document.querySelectorAll('.flags .flag').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const title = (a.title || '').toLowerCase();
+      const map = { 'español':'es', 'english':'en', 'français':'fr' };
+      const lang = map[title] || a.dataset.lang || 'es';
+      setLanguage(lang);
+    });
+  });
+
+  // Apply initial language before other renderings
+  setLanguage(currentLang);
+
   // ---- Modo oscuro (si existe el toggle) ----
   const darkToggle = document.getElementById('darkmode-toggle');
   const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -20,20 +154,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- Cargar proyectos desde GitHub (si existe contenedor .project-list) ----
   const githubUsername = 'cronoss20';
-  const projectsContainer = document.querySelector('.project-list');
+  const projectsContainer = document.querySelector('#projects .projects-grid');
   if (projectsContainer) {
-    fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6`)
+    // limpiar contenido estático para evitar duplicados
+    projectsContainer.innerHTML = '';
+    fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=12`)
       .then(res => res.ok ? res.json() : [])
       .then(repos => {
-        (repos || []).slice(0,6).forEach(repo => {
+        const tr = translations[currentLang] || translations.es;
+        // excluir el repositorio de la página personal
+        const filtered = (repos || []).filter(r => r && r.name !== 'cronoss20.github.io');
+        // tomar hasta 6 repos recientes después de filtrar
+        filtered.slice(0,6).forEach(repo => {
           const card = document.createElement('div');
           card.className = 'project-card';
           card.innerHTML = `
-            <h3>${repo.name}</h3>
-            <p>${repo.description || 'Sin descripción.'}</p>
-            <div class="project-links">
-              <a href="${repo.html_url}" target="_blank" rel="noopener">Código</a>
-              ${repo.homepage ? `<a href="${repo.homepage}" target="_blank" rel="noopener">Demo</a>` : ''}
+            <img src="${repo.owner && repo.owner.avatar_url ? repo.owner.avatar_url : 'project1.jpg'}" alt="${repo.name}" />
+            <div class="project-content">
+              <h3>${repo.name}</h3>
+              <p>${repo.description || (tr.projects_h2 === 'Proyectos Destacados' ? 'Sin descripción.' : 'No description.')}</p>
+              <div class="project-links">
+                <a href="${repo.html_url}" target="_blank" rel="noopener">${tr.project_code}</a>
+                ${repo.homepage ? `<a href="${repo.homepage}" target="_blank" rel="noopener">${tr.project_demo}</a>` : ''}
+              </div>
             </div>
           `;
           projectsContainer.appendChild(card);
@@ -168,6 +311,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroTitle = document.getElementById('hero-title'); if (heroTitle) heroTitle.textContent = `Hola, soy ${name}`;
     const pageTitle = document.getElementById('page-title'); if (pageTitle) pageTitle.textContent = `${name} | Ingeniero Informático`;
     const footerCopy = document.getElementById('footer-copy'); if (footerCopy) footerCopy.textContent = `© ${new Date().getFullYear()} ${name}. Todos los derechos reservados.`;
+    currentName = name || currentName;
+    // reaplicar traducciones para incluir el nombre actualizado
+    try { if (typeof applyTranslations === 'function') applyTranslations(currentLang); } catch(e) {/* ignore */}
   }
   fetchGitHubName(githubUsername).then(setName);
 
