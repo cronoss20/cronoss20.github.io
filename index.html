@@ -66,16 +66,26 @@
   </section>
   <section id="contact">
     <h2>Contacto</h2>
-    <form>
-      <input type="text" name="name" placeholder="Nombre" required/>
-      <input type="email" name="email" placeholder="Email" required/>
-      <textarea name="message" placeholder="Mensaje" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-    <div class="contact-icons">
-      <a href="https://github.com/cronoss20" target="_blank" title="GitHub"><img src="github.svg" alt="GitHub"/></a>
-      <a href="https://www.linkedin.com/in/angelsierralopez/" target="_blank" title="LinkedIn"><img src="LI.png" alt="LinkedIn"/></a>
-      <!-- Más redes -->
+    <div class="contact-grid">
+      <div class="contact-left">
+        <form id="contact-form" data-formspree="https://script.google.com/macros/s/AKfycbyZYWhZYOUR-rgM4AERPGR666F7AYEgQBcY89RQuWdkjRbvQlkFzEh6_6OsssdY8PTo/exec">
+          <input type="text" name="name" placeholder="Nombre" required/>
+          <input type="email" name="email" placeholder="Email" required/>
+          <textarea name="message" placeholder="Mensaje" required></textarea>
+          <button type="submit">Enviar</button>
+        </form>
+        <div id="form-response" class="form-response" aria-live="polite"></div>
+      </div>
+      <aside class="contact-right">
+        <!-- <h3>Otros canales</h3> -->
+        <p>También puedes ponerte en contacto conmigo por correo electrónico en <a href="mailto:angelsierralopez@icloud.com">angelsierralopez@icloud.com</a>, o a través de mis redes sociales. Respondo mensajes profesionales y consultas de proyectos en horario laboral.</p>
+        <div class="contact-quick">
+          <a class="contact-quick-item" href="mailto:angelsierralopez@icloud.com">✉️ Correo</a>
+          <a class="contact-quick-item" href="https://github.com/cronoss20" target="_blank">🐙 GitHub</a>
+          <a class="contact-quick-item" href="https://www.linkedin.com/in/angelsierralopez/" target="_blank">💼 LinkedIn</a>
+        </div>
+        <!-- <p class="contact-note">Si prefieres, detalla tu disponibilidad y el objetivo del proyecto; eso me ayuda a responder de manera más rápida y efectiva.</p> -->
+      </aside>
     </div>
   </section>
   <footer>

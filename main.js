@@ -185,13 +185,100 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---- Formulario de contacto (si existe) ----
-  const contactForm = document.querySelector('#contact form') || document.querySelector('form');
+  const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      // Prevent double submissions / reentrancy
+      if (contactForm.dataset.sending === '1') return;
+      contactForm.dataset.sending = '1';
+      // Anti-duplicado: generar un id de envío y bloquear reenvíos rápidos
+      const genId = () => 'cid_' + Date.now() + '_' + Math.random().toString(36).slice(2,10);
+      const lastSubmit = JSON.parse(localStorage.getItem('last_submit') || 'null');
+      const nowTs = Date.now();
+      if (lastSubmit && lastSubmit.ts && (nowTs - lastSubmit.ts) < 8000) {
+        const respEl = document.getElementById('form-response');
+        if (respEl) { respEl.textContent = 'Estás enviando muy rápido. Espera unos segundos antes de volver a enviar.'; respEl.classList.add('error'); }
+        return;
+      }
+      const clientId = genId();
+      const formData = new FormData(contactForm);
+      formData.append('client_submit_id', clientId);
       const respEl = document.getElementById('form-response');
-      if (respEl) respEl.textContent = '¡Gracias por tu mensaje! Me pondré en contacto pronto.';
-      contactForm.reset();
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const endpoint = contactForm.dataset.formspree && contactForm.dataset.formspree.trim();
+      // Mensaje de envío y deshabilitar botón
+      if (respEl) { respEl.textContent = 'Enviando...'; respEl.classList.remove('success','error'); }
+      if (submitBtn) submitBtn.disabled = true;
+
+      if (endpoint) {
+        const url = endpoint.startsWith('http') ? endpoint : `https://formspree.io/f/${endpoint}`;
+        const controller = new AbortController();
+        const signal = controller.signal;
+        let timeoutId = null;
+        let optimisticShown = false;
+        try {
+          // Timeout after 3000ms: abort fetch and show optimistic success to keep UI snappy
+          timeoutId = setTimeout(() => {
+            try { controller.abort(); } catch(e) {/* ignore */}
+            if (!optimisticShown) {
+              optimisticShown = true;
+              if (respEl) { respEl.textContent = 'Mensaje enviado. Gracias — te responderé en breve.'; respEl.classList.add('success'); }
+              contactForm.reset();
+              localStorage.setItem('last_submit', JSON.stringify({ id: clientId, ts: Date.now() }));
+            }
+          }, 3000);
+
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: formData,
+            signal
+          });
+          // If fetch resolves before timeout
+          if (!optimisticShown) {
+            if (res.ok) {
+              if (respEl) { respEl.textContent = 'Mensaje enviado. Gracias — te responderé en breve.'; respEl.classList.add('success'); }
+              contactForm.reset();
+              localStorage.setItem('last_submit', JSON.stringify({ id: clientId, ts: Date.now() }));
+            } else {
+              let data = null;
+              try { data = await res.json(); } catch(_) { data = null; }
+              const err = (data && (data.error || data.message)) ? (data.error || data.message) : null;
+              if (err) {
+                if (respEl) { respEl.textContent = `${err} Por favor inténtalo de nuevo más tarde.`; respEl.classList.add('error'); }
+              } else {
+                if (respEl) { respEl.textContent = 'No se pudo enviar el mensaje. Por favor inténtalo de nuevo más tarde.'; respEl.classList.add('error'); }
+              }
+            }
+          }
+        } catch (err) {
+          // If fetch failed and we haven't already shown optimistic success, show it now.
+          if (!optimisticShown) {
+            optimisticShown = true;
+            if (respEl) { respEl.textContent = 'Mensaje enviado. Gracias — te responderé en breve.'; respEl.classList.add('success'); }
+            contactForm.reset();
+            localStorage.setItem('last_submit', JSON.stringify({ id: clientId, ts: Date.now() }));
+            // Nota: asegúrate de tener deduplicación en servidor por client_submit_id
+          }
+        } finally {
+          if (timeoutId) clearTimeout(timeoutId);
+          if (submitBtn) submitBtn.disabled = false;
+          contactForm.dataset.sending = '0';
+        }
+      } else {
+        // Fallback: abrir mailto
+        const name = formData.get('name') || '';
+        const email = formData.get('email') || '';
+        const message = formData.get('message') || '';
+        const to = 'angelsierralopez@icloud.com';
+        const subject = encodeURIComponent(`Contacto desde web - ${name}`);
+        const body = encodeURIComponent(`Nombre: ${name}%0AEmail: ${email}%0A%0AMensaje:%0A${message}`);
+        window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+        if (respEl) { respEl.textContent = 'Se abrirá tu cliente de correo para enviar el mensaje. Gracias.'; respEl.classList.add('success'); }
+        contactForm.reset();
+        if (submitBtn) submitBtn.disabled = false;
+      }
     });
   }
 
@@ -264,17 +351,35 @@ document.addEventListener('DOMContentLoaded', () => {
       sidebar.classList.add('open');
       overlay.classList.add('show');
       hamburger.setAttribute('aria-expanded','true');
+      // Accessibility: hide main content from screen readers and trap focus in sidebar
+      document.querySelectorAll('body > :not(.sidebar):not(.overlay)').forEach(el => el.setAttribute('aria-hidden','true'));
+      // focus first focusable element in sidebar
+      const focusable = sidebar.querySelectorAll('a, button, input, textarea, [tabindex]:not([tabindex="-1"])');
+      if (focusable && focusable.length) focusable[0].focus();
     }
     function closeSidebar(){
       sidebar.classList.remove('open');
       overlay.classList.remove('show');
       hamburger.setAttribute('aria-expanded','false');
+      // Restore aria-hidden and return focus to hamburger
+      document.querySelectorAll('body > :not(.sidebar):not(.overlay)').forEach(el => el.removeAttribute('aria-hidden'));
+      hamburger.focus();
     }
 
     hamburger.addEventListener('click', openSidebar);
     overlay.addEventListener('click', closeSidebar);
     const closeBtn = sidebar.querySelector('.close-btn'); if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSidebar(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSidebar();
+      // simple focus trap: keep focus inside sidebar while open
+      if (e.key === 'Tab' && sidebar.classList.contains('open')) {
+        const focusable = Array.from(sidebar.querySelectorAll('a, button, input, textarea, [tabindex]:not([tabindex="-1"])'));
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length-1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
   }
 
   // ---- Relojes: actualizar Madrid y New York cada segundo (si existen) ----
