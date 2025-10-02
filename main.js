@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cta: 'Ver proyectos',
       about_h2: 'Sobre mí',
       about_p: 'Soy {name}, Ingeniero Informático apasionado por resolver problemas reales mediante software bien diseñado. Desarrollo aplicaciones web y APIs con PHP, Node y Python, construyo interfaces reactivas con HTML/CSS y React, y uso Docker para crear despliegues reproducibles. También trabajo con C/C++ cuando se requiere rendimiento; disfruto automatizar flujos y facilitar productos escalables y mantenibles.',
+      timeline_h2: 'Mi Trayectoria',
       projects_h2: 'Proyectos Destacados',
       project_code: 'Código',
       project_demo: 'Demo',
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       form_btn: 'Enviar',
       footer_tpl: '© {year} {name}. Todos los derechos reservados.',
       sidebar_nav_about: 'Sobre mí',
+      sidebar_nav_timeline: 'Trayectoria',
       sidebar_nav_projects: 'Proyectos',
       sidebar_nav_contact: 'Contacto',
       sidebar_motivation: 'Me muevo por la curiosidad y el deseo de resolver problemas reales; disfruto aprendiendo nuevas tecnologías y construyendo soluciones prácticas que ayuden a otros.'
@@ -32,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cta: 'See projects',
       about_h2: 'About me',
       about_p: 'I am {name}, a software engineer driven by curiosity and real-world problems. I develop web applications and APIs with PHP, Node and Python, build reactive interfaces using HTML/CSS and React, and use Docker for reproducible deployments. I also work with C/C++ when performance or low-level control is required; I enjoy automating workflows and delivering scalable, maintainable products.',
+      timeline_h2: 'My Journey',
       projects_h2: 'Featured Projects',
       project_code: 'Code',
       project_demo: 'Demo',
@@ -42,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
       form_btn: 'Send',
       footer_tpl: '© {year} {name}. All rights reserved.',
       sidebar_nav_about: 'About',
+      sidebar_nav_timeline: 'Journey',
       sidebar_nav_projects: 'Projects',
       sidebar_nav_contact: 'Contact',
       sidebar_motivation: 'I am driven by curiosity and the desire to solve real problems; I enjoy learning new technologies and building practical solutions that help others.'
@@ -53,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cta: 'Voir les projets',
       about_h2: 'À propos de moi',
       about_p: 'Je suis {name}, ingénieur informatique animé par la curiosité et le désir de résoudre des problèmes concrets. Je développe des applications web et des API avec PHP, Node et Python, crée des interfaces réactives avec HTML/CSS et React, et utilise Docker pour des déploiements reproductibles. Je travaille également en C/C++ lorsque la performance est requise; j\'aime automatiser les flux et livrer des produits évolutifs et maintenables.',
+      timeline_h2: 'Mon Parcours',
       projects_h2: 'Projets en vedette',
       project_code: 'Code',
       project_demo: 'Demo',
@@ -63,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
       form_btn: 'Envoyer',
       footer_tpl: '© {year} {name}. Tous droits réservés.',
       sidebar_nav_about: 'À propos',
+      sidebar_nav_timeline: 'Parcours',
       sidebar_nav_projects: 'Projets',
       sidebar_nav_contact: 'Contact',
       sidebar_motivation: 'Je suis motivé par la curiosité et le désir de résoudre des problèmes concrets; j\'aime apprendre de nouvelles technologies et construire des solutions pratiques qui aident les autres.'
@@ -92,6 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // About
     const aboutH2 = document.querySelector('#about h2'); if (aboutH2) aboutH2.textContent = tr.about_h2;
   const aboutP = document.querySelector('#about .about-content p'); if (aboutP) aboutP.textContent = tr.about_p.replace('{name}', currentName);
+    // Timeline
+    const timelineH2 = document.querySelector('#timeline h2'); if (timelineH2) timelineH2.textContent = tr.timeline_h2;
     // Projects
     const projectsH2 = document.querySelector('#projects h2'); if (projectsH2) projectsH2.textContent = tr.projects_h2;
     // Contact / Form
@@ -104,8 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const sb = document.querySelector('.sidebar'); if (sb) {
       const navs = sb.querySelectorAll('.sidebar-nav a');
       if (navs[0]) navs[0].querySelectorAll('span')[1].textContent = tr.sidebar_nav_about;
-      if (navs[1]) navs[1].querySelectorAll('span')[1].textContent = tr.sidebar_nav_projects;
-      if (navs[2]) navs[2].querySelectorAll('span')[1].textContent = tr.sidebar_nav_contact;
+      if (navs[1]) navs[1].querySelectorAll('span')[1].textContent = tr.sidebar_nav_timeline;
+      if (navs[2]) navs[2].querySelectorAll('span')[1].textContent = tr.sidebar_nav_projects;
+      if (navs[3]) navs[3].querySelectorAll('span')[1].textContent = tr.sidebar_nav_contact;
       const sm = sb.querySelector('.sidebar-motivation p'); if (sm) sm.textContent = tr.sidebar_motivation;
     }
     // Footer
@@ -367,6 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <nav class="sidebar-nav">
           <a href="#about"><span class="icon">👋</span><span>Sobre mí</span></a>
+          <a href="#timeline"><span class="icon">📅</span><span>Trayectoria</span></a>
           <a href="#projects"><span class="icon">💼</span><span>Proyectos</span></a>
           <a href="#contact"><span class="icon">✉️</span><span>Contacto</span></a>
         </nav>
