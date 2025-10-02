@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
       form_btn: 'Enviar',
       footer_tpl: '© {year} {name}. Todos los derechos reservados.',
       sidebar_nav_about: 'Sobre mí',
+      sidebar_nav_timeline: 'Línea de tiempo',
       sidebar_nav_projects: 'Proyectos',
       sidebar_nav_contact: 'Contacto',
       sidebar_motivation: 'Me muevo por la curiosidad y el deseo de resolver problemas reales; disfruto aprendiendo nuevas tecnologías y construyendo soluciones prácticas que ayuden a otros.'
@@ -60,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       form_btn: 'Send',
       footer_tpl: '© {year} {name}. All rights reserved.',
       sidebar_nav_about: 'About',
+      sidebar_nav_timeline: 'Timeline',
       sidebar_nav_projects: 'Projects',
       sidebar_nav_contact: 'Contact',
       sidebar_motivation: 'I am driven by curiosity and the desire to solve real problems; I enjoy learning new technologies and building practical solutions that help others.'
@@ -90,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       form_btn: 'Envoyer',
       footer_tpl: '© {year} {name}. Tous droits réservés.',
       sidebar_nav_about: 'À propos',
+      sidebar_nav_timeline: 'Chronologie',
       sidebar_nav_projects: 'Projets',
       sidebar_nav_contact: 'Contact',
       sidebar_motivation: 'Je suis motivé par la curiosité et le désir de résoudre des problèmes concrets; j\'aime apprendre de nouvelles technologies et construire des solutions pratiques qui aident les autres.'
@@ -150,8 +153,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const sb = document.querySelector('.sidebar'); if (sb) {
       const navs = sb.querySelectorAll('.sidebar-nav a');
       if (navs[0]) navs[0].querySelectorAll('span')[1].textContent = tr.sidebar_nav_about;
-      if (navs[1]) navs[1].querySelectorAll('span')[1].textContent = tr.sidebar_nav_projects;
-      if (navs[2]) navs[2].querySelectorAll('span')[1].textContent = tr.sidebar_nav_contact;
+      if (navs[1]) navs[1].querySelectorAll('span')[1].textContent = tr.sidebar_nav_timeline;
+      if (navs[2]) navs[2].querySelectorAll('span')[1].textContent = tr.sidebar_nav_projects;
+      if (navs[3]) navs[3].querySelectorAll('span')[1].textContent = tr.sidebar_nav_contact;
       const sm = sb.querySelector('.sidebar-motivation p'); if (sm) sm.textContent = tr.sidebar_motivation;
     }
     // Footer
@@ -413,6 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <nav class="sidebar-nav">
           <a href="#about"><span class="icon">👋</span><span>Sobre mí</span></a>
+          <a href="#timeline"><span class="icon">📅</span><span>Línea de tiempo</span></a>
           <a href="#projects"><span class="icon">💼</span><span>Proyectos</span></a>
           <a href="#contact"><span class="icon">✉️</span><span>Contacto</span></a>
         </nav>

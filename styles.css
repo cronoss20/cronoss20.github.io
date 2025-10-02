@@ -284,7 +284,19 @@ h2 {
   flex-wrap: wrap;
   background: transparent;
 }
-.about-content p { flex: 2; font-size: 1.05rem; }
+.about-content p { 
+  flex: 2; 
+  font-size: 1.1rem; 
+  line-height: 1.8;
+  color: #333;
+  margin: 0;
+}
+
+/* Add emphasis to key words in about section */
+.about-content strong {
+  color: var(--accent);
+  font-weight: 600;
+}
 
 .skills {
   flex: 1;
@@ -292,6 +304,7 @@ h2 {
   gap: 1rem;
   align-items: center;
   flex-wrap: wrap;
+  min-width: 280px;
 }
 
 .skills span {
@@ -635,6 +648,10 @@ footer {
   .hero-img img { width: 140px; height: 140px; margin-bottom: 1.5em; }
   section { padding: 2.5rem 1rem; }
   #about, #timeline, #projects, #contact { padding: 1.8rem 1rem; margin: 1.5rem auto; }
+  
+  /* Improve about section on tablets */
+  .about-content { gap: 2rem; }
+  .about-content p { font-size: 1.05rem; }
 }
 
 @media (max-width: 700px) {
@@ -643,6 +660,11 @@ footer {
   .flag { width: 30px; height: 30px; }
   .flag img { width: 20px; height: 20px; }
   header { padding: 0 .8rem; }
+  
+  /* Stack about content vertically on mobile */
+  .about-content { flex-direction: column; gap: 1.5rem; }
+  .about-content p { font-size: 1rem; }
+  .skills { min-width: 100%; justify-content: center; }
 }
 
 @media (max-width: 600px) {
@@ -653,6 +675,11 @@ footer {
   .hero-img img { width: 90px; height: 90px; }
   section { padding: 1.2rem 0.8rem; border-radius: 8px; box-shadow: none; }
   #about, #timeline, #projects, #contact { padding: 1rem 0.8rem; border-radius: 10px; box-shadow: none; }
+  
+  /* Further improve about section on small mobile */
+  .about-content p { font-size: 0.95rem; line-height: 1.7; }
+  .skills { gap: 0.8rem; }
+  .skills span { width: 44px; height: 44px; }
 }
 
 /* Mensajes de respuesta del formulario */
