@@ -11,6 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
       cta: 'Ver proyectos',
       about_h2: 'Sobre mí',
       about_p: 'Soy {name}, Ingeniero Informático apasionado por resolver problemas reales mediante software bien diseñado. Desarrollo aplicaciones web y APIs con PHP, Node y Python, construyo interfaces reactivas con HTML/CSS y React, y uso Docker para crear despliegues reproducibles. También trabajo con C/C++ cuando se requiere rendimiento; disfruto automatizar flujos y facilitar productos escalables y mantenibles.',
+      timeline_h2: 'Línea de Tiempo',
+      timeline_item1_title: 'Bachillerato',
+      timeline_item1_desc: 'Finalización de estudios secundarios con especialización en Ciencias y Tecnología.',
+      timeline_item2_title: 'Ingeniería Informática',
+      timeline_item2_desc: 'Graduación en Ingeniería Informática, especializándome en desarrollo de software y sistemas.',
+      timeline_item3_title: 'Primeros Pasos Profesionales',
+      timeline_item3_desc: 'Prácticas profesionales y primeros trabajos como desarrollador, adquiriendo experiencia práctica en proyectos reales.',
+      timeline_item4_title: 'Desarrollo Profesional',
+      timeline_item4_desc: 'Consolidación de carrera como Ingeniero Informático, liderando proyectos de desarrollo web, APIs y automatización, trabajando con tecnologías modernas como React, Docker, Python y Node.js.',
       projects_h2: 'Proyectos Destacados',
       project_code: 'Código',
       project_demo: 'Demo',
@@ -32,6 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
       cta: 'See projects',
       about_h2: 'About me',
       about_p: 'I am {name}, a software engineer driven by curiosity and real-world problems. I develop web applications and APIs with PHP, Node and Python, build reactive interfaces using HTML/CSS and React, and use Docker for reproducible deployments. I also work with C/C++ when performance or low-level control is required; I enjoy automating workflows and delivering scalable, maintainable products.',
+      timeline_h2: 'Timeline',
+      timeline_item1_title: 'High School',
+      timeline_item1_desc: 'Completed secondary education with a focus on Science and Technology.',
+      timeline_item2_title: 'Computer Engineering',
+      timeline_item2_desc: 'Graduated in Computer Engineering, specializing in software development and systems.',
+      timeline_item3_title: 'Early Career Steps',
+      timeline_item3_desc: 'Professional internships and first jobs as a developer, gaining hands-on experience in real projects.',
+      timeline_item4_title: 'Professional Development',
+      timeline_item4_desc: 'Career consolidation as a Computer Engineer, leading web development, API and automation projects, working with modern technologies like React, Docker, Python and Node.js.',
       projects_h2: 'Featured Projects',
       project_code: 'Code',
       project_demo: 'Demo',
@@ -53,6 +71,15 @@ document.addEventListener('DOMContentLoaded', () => {
       cta: 'Voir les projets',
       about_h2: 'À propos de moi',
       about_p: 'Je suis {name}, ingénieur informatique animé par la curiosité et le désir de résoudre des problèmes concrets. Je développe des applications web et des API avec PHP, Node et Python, crée des interfaces réactives avec HTML/CSS et React, et utilise Docker pour des déploiements reproductibles. Je travaille également en C/C++ lorsque la performance est requise; j\'aime automatiser les flux et livrer des produits évolutifs et maintenables.',
+      timeline_h2: 'Chronologie',
+      timeline_item1_title: 'Baccalauréat',
+      timeline_item1_desc: 'Achèvement des études secondaires avec spécialisation en Sciences et Technologie.',
+      timeline_item2_title: 'Ingénierie Informatique',
+      timeline_item2_desc: 'Diplômé en Ingénierie Informatique, spécialisé dans le développement de logiciels et les systèmes.',
+      timeline_item3_title: 'Premiers Pas Professionnels',
+      timeline_item3_desc: 'Stages professionnels et premiers emplois en tant que développeur, acquérant une expérience pratique sur des projets réels.',
+      timeline_item4_title: 'Développement Professionnel',
+      timeline_item4_desc: 'Consolidation de carrière en tant qu\'ingénieur informatique, dirigeant des projets de développement web, API et automatisation, travaillant avec des technologies modernes comme React, Docker, Python et Node.js.',
       projects_h2: 'Projets en vedette',
       project_code: 'Code',
       project_demo: 'Demo',
@@ -92,6 +119,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // About
     const aboutH2 = document.querySelector('#about h2'); if (aboutH2) aboutH2.textContent = tr.about_h2;
   const aboutP = document.querySelector('#about .about-content p'); if (aboutP) aboutP.textContent = tr.about_p.replace('{name}', currentName);
+    // Timeline
+    const timelineH2 = document.querySelector('#timeline h2'); if (timelineH2) timelineH2.textContent = tr.timeline_h2;
+    const timelineItems = document.querySelectorAll('#timeline .timeline-item');
+    if (timelineItems[0]) {
+      const h3_1 = timelineItems[0].querySelector('h3'); if (h3_1) h3_1.textContent = tr.timeline_item1_title;
+      const p_1 = timelineItems[0].querySelector('p'); if (p_1) p_1.textContent = tr.timeline_item1_desc;
+    }
+    if (timelineItems[1]) {
+      const h3_2 = timelineItems[1].querySelector('h3'); if (h3_2) h3_2.textContent = tr.timeline_item2_title;
+      const p_2 = timelineItems[1].querySelector('p'); if (p_2) p_2.textContent = tr.timeline_item2_desc;
+    }
+    if (timelineItems[2]) {
+      const h3_3 = timelineItems[2].querySelector('h3'); if (h3_3) h3_3.textContent = tr.timeline_item3_title;
+      const p_3 = timelineItems[2].querySelector('p'); if (p_3) p_3.textContent = tr.timeline_item3_desc;
+    }
+    if (timelineItems[3]) {
+      const h3_4 = timelineItems[3].querySelector('h3'); if (h3_4) h3_4.textContent = tr.timeline_item4_title;
+      const p_4 = timelineItems[3].querySelector('p'); if (p_4) p_4.textContent = tr.timeline_item4_desc;
+    }
     // Projects
     const projectsH2 = document.querySelector('#projects h2'); if (projectsH2) projectsH2.textContent = tr.projects_h2;
     // Contact / Form
