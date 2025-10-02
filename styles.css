@@ -483,12 +483,117 @@ footer {
 .clocks .tz { font-weight: 600; min-width: 70px; }
 .clocks .time { font-variant-numeric: tabular-nums; }
 
+/* Timeline Section */
+#timeline {
+  background: var(--card-bg);
+  border: var(--border);
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.04);
+  padding: 2.5rem 2.5rem;
+  max-width: 1000px;
+  margin: 2.5rem auto;
+}
+
+.timeline-container {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, #111, #888);
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding-left: 2rem;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 0.3rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #111;
+  box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.1);
+  z-index: 1;
+}
+
+.timeline-date {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #111;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.timeline-content {
+  background: #f9f9f9;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.timeline-content:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.timeline-content h3 {
+  margin: 0 0 0.8rem 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  color: #111;
+}
+
+.timeline-content p {
+  margin: 0 0 1rem 0;
+  line-height: 1.6;
+  color: #333;
+}
+
+.timeline-content ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.timeline-content li {
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+.timeline-content li:last-child {
+  margin-bottom: 0;
+}
+
 /* Responsive tweaks */
 @media (max-width: 900px) {
   .hero { flex-direction: column-reverse; align-items: center; text-align: center; padding: 3rem 1.25rem 1rem 1.25rem; }
   .hero-img img { width: 140px; height: 140px; margin-bottom: 1.5em; }
   section { padding: 2.5rem 1rem; }
   #about, #projects, #contact { padding: 1.8rem 1rem; margin: 1.5rem auto; }
+  #timeline { padding: 1.8rem 1rem; margin: 1.5rem auto; }
+  .timeline-container { padding-left: 1.5rem; }
+  .timeline-item { padding-left: 1.5rem; }
+  .timeline-item::before { left: -1.5rem; }
 }
 
 @media (max-width: 700px) {
@@ -507,6 +612,12 @@ footer {
   .hero-img img { width: 90px; height: 90px; }
   section { padding: 1.2rem 0.8rem; border-radius: 8px; box-shadow: none; }
   #about, #projects, #contact { padding: 1rem 0.8rem; border-radius: 10px; box-shadow: none; }
+  #timeline { padding: 1rem 0.8rem; border-radius: 10px; box-shadow: none; }
+  .timeline-container { padding-left: 1rem; }
+  .timeline-item { padding-left: 1rem; margin-bottom: 2rem; }
+  .timeline-item::before { left: -1rem; width: 12px; height: 12px; }
+  .timeline-content { padding: 1rem; }
+  .timeline-content h3 { font-size: 1.2rem; }
 }
 
 /* Mensajes de respuesta del formulario */
